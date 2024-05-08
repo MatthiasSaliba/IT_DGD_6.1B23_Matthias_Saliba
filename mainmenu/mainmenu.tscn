@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://t4fbm2fgtte3"]
+
+[ext_resource type="Script" path="res://mainmenu/mainmenu.gd" id="1_a2ww6"]
+[ext_resource type="Texture2D" uid="uid://76cfmhp5e33r" path="res://images/background.jpg" id="1_rtgyh"]
+
+[node name="Mainmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a2ww6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(578, 322)
+scale = Vector2(0.2348, 0.20282)
+texture = ExtResource("1_rtgyh")
+
+[node name="Button1" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 158.0
+offset_top = 255.0
+offset_right = -794.0
+offset_bottom = -265.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Match and Learn"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 478.0
+offset_top = 255.0
+offset_right = -474.0
+offset_bottom = -265.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "3 Pics 1 Word"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 798.0
+offset_top = 255.0
+offset_right = -154.0
+offset_bottom = -265.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Find the Word"
