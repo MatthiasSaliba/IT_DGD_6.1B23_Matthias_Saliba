@@ -13,7 +13,4 @@ func _process(delta):
 
 func spawn_food():
 	var food = GameManagerMatch.food_scene.instantiate()
-	food.global_position
-	food.texture = GameManagerMatch.pick_random_texture()
-	
 	add_child(food)

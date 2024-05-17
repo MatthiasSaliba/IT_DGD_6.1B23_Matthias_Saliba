@@ -14,6 +14,19 @@ var food_textures = [
 	preload("res://images/orange.png")
 ]
 
+var object_pool = [
+	{"image": "res://images/apple.png", "word": "APPLE"}, 
+	{"image": "res://images/banana.png", "word": "BANANA"},
+	{"image": "res://images/bread.png", "word": "BREAD"},
+	{"image": "res://images/burger.png", "word": "BURGER"}, 
+	{"image": "res://images/carrot.png", "word": "CARROT"},
+	{"image": "res://images/cheese.png", "word": "CHEESE"},
+	{"image": "res://images/french_fries.png", "word": "FRIES"},
+	{"image": "res://images/grapes_purple.png", "word": "GRAPES"},
+	{"image": "res://images/lemon.png", "word": "LEMON"},
+	{"image": "res://images/orange.png", "word": "ORANGE"}
+]
+
 #loading food scenes
 var food_scene = preload("res://match_and_learn/food/food.tscn")
 
