@@ -27,9 +27,8 @@ var object_pool = [
 	{"image": "res://images/orange.png", "word": "ORANGE"}
 ]
 
-#loading food scenes
-var food_scene = preload("res://match_and_learn/food/food.tscn")
-
+#touch event
+var isDragging = false
 
 func pick_random_texture() -> Texture:
 	var random_index = randi() % food_textures.size()

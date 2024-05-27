@@ -7,7 +7,6 @@
 script = ExtResource("1_elvuk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -1
 position = Vector2(577, 324)
 scale = Vector2(0.831428, 0.702355)
 texture = ExtResource("2_e8s44")

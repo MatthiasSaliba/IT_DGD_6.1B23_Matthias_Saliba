@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dngy5r185ensj"]
+
+[ext_resource type="Script" path="res://match_and_learn/letters/letters.gd" id="1_55qlb"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ahghb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ilg6r"]
+size = Vector2(50, 50)
+
+[node name="Letters" type="Node2D"]
+script = ExtResource("1_55qlb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.333333, 0.498039, 1)
+scale = Vector2(50, 50)
+texture = SubResource("CanvasTexture_ahghb")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ilg6r")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

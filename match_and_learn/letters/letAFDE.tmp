@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dngy5r185ensj"]
+
+[ext_resource type="Script" path="res://match_and_learn/letters/letters.gd" id="1_55qlb"]
+[ext_resource type="Script" path="res://match_and_learn/components/draggable_component.gd" id="2_civ15"]
+[ext_resource type="Script" path="res://match_and_learn/components/snap_drag_component.gd" id="3_whe1t"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xq3n0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytw8f"]
+size = Vector2(73, 41.5)
+
+[node name="Letters" type="Area2D"]
+script = ExtResource("1_55qlb")
+
+[node name="DraggableComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_civ15")
+actor = NodePath("..")
+
+[node name="SnapDrag" type="Node" parent="." node_paths=PackedStringArray("actor", "draggable_component")]
+script = ExtResource("3_whe1t")
+actor = NodePath("..")
+draggable_component = NodePath("../DraggableComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(418.5, 324)
+scale = Vector2(73, -42)
+texture = SubResource("CanvasTexture_xq3n0")
+
+[node name="Word" type="Label" parent="Sprite2D"]
+offset_left = 382.0
+offset_top = 304.0
+offset_right = 455.0
+offset_bottom = 344.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(418.5, 324.25)
+shape = SubResource("RectangleShape2D_ytw8f")
