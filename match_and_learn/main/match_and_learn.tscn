@@ -1,13 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbdm572qytvs0"]
+[gd_scene load_steps=6 format=3 uid="uid://bbdm572qytvs0"]
 
 [ext_resource type="Script" path="res://match_and_learn/main/match_and_learn.gd" id="1_elvuk"]
 [ext_resource type="Texture2D" uid="uid://btcd025osuw0m" path="res://images/matchBG1.jpg" id="2_e8s44"]
+[ext_resource type="Texture2D" uid="uid://7tmigoewivif" path="res://images/back-button.png" id="3_5bb1p"]
+[ext_resource type="Texture2D" uid="uid://brjo3mjxa1qcs" path="res://images/red.png" id="4_8pd1o"]
+[ext_resource type="Texture2D" uid="uid://dvyf14nmsjddy" path="res://images/green.png" id="5_7tstu"]
 
-[node name="MatchAndLearn" type="Node2D"]
+[node name="MatchAndLearn" type="Node2D" groups=["main"]]
 script = ExtResource("1_elvuk")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BG" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(577, 324)
 scale = Vector2(0.831428, 0.702355)
 texture = ExtResource("2_e8s44")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 22.0
+offset_top = 16.0
+offset_right = 129.0
+offset_bottom = 80.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Button"]
+position = Vector2(55.25, 32.25)
+scale = Vector2(0.714844, 0.449219)
+texture = ExtResource("3_5bb1p")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 448.0
+offset_top = 59.0
+offset_right = 713.0
+offset_bottom = 106.0
+texture_under = ExtResource("4_8pd1o")
+texture_progress = ExtResource("5_7tstu")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

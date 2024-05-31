@@ -10,6 +10,9 @@ var initialPos : Vector2
 @onready var label = $Label
 @onready var bg = $Sprite2D
 
+#i need to get an instance of the progress bar from matchandlearn scene
+@onready var progressBar = get_node("/root/MatchAndLearn/ProgressBar")
+
 func _process(delta):
 	if draggable:
 		if Input.is_action_just_pressed("click"):
@@ -23,14 +26,23 @@ func _process(delta):
 			var tween = get_tree().create_tween()
 			if is_inside_dropable:
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
-				print(label.text)
 				var reference = body_ref.get_node("Label").text
 				if label.text == reference:
+					GameManagerMatch.correctPlacements.append(reference)
 					modulate = Color(Color.GREEN, 1)
-					#body_ref.modulate = Color(Color.WHITE, 0)
+					print(GameManagerMatch.correctPlacements)
+					#increment progressbar
+					get_tree().call_group("main", "_on_increment_progressbar")
+					print(progressBar.value)
+					
+					if checkWordCompletion() || checkWordCompletion2() || checkWordCompletion3() || checkWordCompletion4():
+						get_tree().call_group("main", "_on_correct_match")
+						# clear the correct placements
+						GameManagerMatch.correctPlacements.clear()
+						progressBar.value = 0
+						
 				else:
 					tween.tween_property(self, "position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
-					#modulate = Color(Color.RED, 1)
 			else:
 				tween.tween_property(self, "position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
 
@@ -54,3 +66,33 @@ func _on_area_2d_body_exited(body):
 	if body.is_in_group('dropable'):
 		is_inside_dropable = false
 		body.modulate = Color(Color.MEDIUM_PURPLE, 0.7)
+
+# Check Completion
+func checkWordCompletion():
+	var word = GameManagerMatch.item["word"].split("")
+	for letter in word:
+		if not GameManagerMatch.correctPlacements.has(letter):
+			return false
+	return true
+
+func checkWordCompletion2():
+	var word = GameManagerMatch.item2["word"].split("")
+	for letter in word:
+		if not GameManagerMatch.correctPlacements.has(letter):
+			return false
+	return true
+
+func checkWordCompletion3():
+	var word = GameManagerMatch.item3["word"].split("")
+	for letter in word:
+		if not GameManagerMatch.correctPlacements.has(letter):
+			return false
+	return true
+
+func checkWordCompletion4():
+	var word = GameManagerMatch.item4["word"].split("")
+	for letter in word:
+		if not GameManagerMatch.correctPlacements.has(letter):
+			return false
+	return true
+

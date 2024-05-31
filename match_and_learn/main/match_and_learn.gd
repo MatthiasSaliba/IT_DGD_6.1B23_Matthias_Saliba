@@ -1,22 +1,115 @@
 extends Node2D
 
-var item = GameManagerMatch.object_pool[randi() % GameManagerMatch.object_pool.size()]
 var platform = load("res://match_and_learn/dropable_platform/platform.tscn")
 var letterLabel = load("res://match_and_learn/letters/letters.tscn")
+
+@onready var background = $BG
+@onready var button = $Button
+@onready var progressBar = $ProgressBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_new_round()
-	
-func start_new_round():	
-	# Extract letters from the word and shuffle them
-	var shuffledLetters = shuffleWord(item["word"])
+ 
 
-	# Display shuffled letters around the image and word
-	displayLetters(shuffledLetters)
-	#displayPlatforms(shuffledLetters)
-	displayFood()
+#increment progressbar according round
+func _on_increment_progressbar():
+	if currentRound == 1:
+		progressBar.value += (100/GameManagerMatch.item["word"].length())
+	elif currentRound == 2:
+		progressBar.value += (100/GameManagerMatch.item2["word"].length())
+	elif currentRound == 3:
+		progressBar.value += (100/GameManagerMatch.item3["word"].length())
+	elif currentRound == 4:
+		progressBar.value += (100/GameManagerMatch.item4["word"].length())
+
+func _on_correct_match():
+	incrementRound()
+	if currentRound > MAX_ROUNDS:
+		print("Level complete")
+		get_tree().change_scene_to_file("res://match_and_learn/level_complete/level_complete.tscn")
+	else:
+		start_new_round()
+
+
+func _on_button_pressed():
+	for child in get_children():
+		child.queue_free()
+	get_tree().change_scene_to_file("res://mainmenu/mainmenu.tscn")
 	
+var currentRound = 1
+const MAX_ROUNDS = 4
+
+func start_new_round():
+	print(currentRound)
+	
+	for child in get_children():
+		if child != background and child != button and child != progressBar:
+			child.queue_free()
+
+	var shuffledLetters = shuffleWord(GameManagerMatch.item["word"])
+	var shuffledLetters2 = shuffleWord(GameManagerMatch.item2["word"])
+	var shuffledLetters3 = shuffleWord(GameManagerMatch.item3["word"])
+	var shuffledLetters4 = shuffleWord(GameManagerMatch.item4["word"])
+	var imageSprite = Sprite2D.new()
+	
+	if currentRound == 1:
+		displayLetters1(shuffledLetters)
+		imageSprite.texture = load(GameManagerMatch.item["image"])
+	elif currentRound == 2:
+		displayLetters2(shuffledLetters2)
+		imageSprite.texture = load(GameManagerMatch.item2["image"])
+	elif currentRound == 3:
+		displayLetters3(shuffledLetters3)
+		imageSprite.texture = load(GameManagerMatch.item3["image"])
+	elif currentRound == 4:
+		displayLetters4(shuffledLetters4)
+		imageSprite.texture = load(GameManagerMatch.item4["image"])
+	
+	imageSprite.position = Vector2(576, 324)
+	imageSprite.scale = Vector2(2, 2)
+	add_child(imageSprite)
+
+func incrementRound():
+	currentRound += 1
+
+func displayLetters(letters, word):
+	var posX = 350
+	var posY = 450
+	
+	for i in range(letters.size()):
+		var letterLabels = letterLabel.instantiate()
+		letterLabels.position = Vector2(randf_range(100, 900), randf_range(100, 550))
+		var label = letterLabels.get_node("Label")
+		label.text = letters[i]
+		label.z_index = 1
+		label.add_theme_color_override("font_color", Color("Black"))
+		add_child(letterLabels)
+		
+		var platforms = platform.instantiate()
+		platforms.position = Vector2(posX, posY)
+		platforms.z_index = 0
+		var platformLabel = platforms.get_node("Label")
+		platformLabel.text = word[i]
+		posX += 100
+		add_child(platforms)
+
+func displayLetters1(letters):
+	var word = GameManagerMatch.item["word"].split("")
+	displayLetters(letters, word)
+
+func displayLetters2(letters):
+	var word = GameManagerMatch.item2["word"].split("")
+	displayLetters(letters, word)
+		
+func displayLetters3(letters):
+	var word = GameManagerMatch.item3["word"].split("")
+	displayLetters(letters, word)
+
+func displayLetters4(letters):
+	var word = GameManagerMatch.item4["word"].split("")
+	displayLetters(letters, word)
+
 func shuffleWord(word):
 	# Convert word to an array of characters
 	var letters = word.split("")
@@ -29,41 +122,3 @@ func shuffleWord(word):
 		letters[j] = temp
 
 	return letters
-
-func unshuffleWord(word):
-	var originalLetters = item["word"]
-	return originalLetters
-
-func displayLetters(letters):
-	var posX = 350
-	var posY : int = 400
-	var word = item["word"].split("")
-	# Display the shuffled letters around the image and word
-	for i in range(letters.size()):
-		var letterLabels = letterLabel.instantiate()
-		#var instance = letterLabel.instantiate()
-		letterLabels.position = Vector2(randf_range(100, 900), randf_range(100, 550))
-		var label = letterLabels.get_node("Label")
-		label.text = letters[i]
-		label.z_index = 1
-		label.add_theme_color_override("font_color", Color("Black"))
-		add_child(letterLabels)
-		
-		var platforms = platform.instantiate()
-		platforms.position = Vector2(posX,posY)
-		var platformLabel = platforms.get_node("Label")
-		platforms.z_index = 0
-		platformLabel.text = word[i]
-		posX += 100
-		add_child(platforms)
-
-func _process(delta):
-	pass
-
-func displayFood():
-	# Load and display the image
-	var imageSprite = Sprite2D.new()
-	imageSprite.texture = load(item["image"])
-	imageSprite.position = Vector2(576,324)
-	imageSprite.scale = Vector2(2,2)
-	add_child(imageSprite)

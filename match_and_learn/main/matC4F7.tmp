@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbdm572qytvs0"]
+
+[ext_resource type="Script" path="res://match_and_learn/main/match_and_learn.gd" id="1_elvuk"]
+[ext_resource type="Texture2D" uid="uid://btcd025osuw0m" path="res://images/matchBG1.jpg" id="2_e8s44"]
+
+[node name="MatchAndLearn" type="Node2D"]
+script = ExtResource("1_elvuk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(577, 324)
+scale = Vector2(0.831428, 0.702355)
+texture = ExtResource("2_e8s44")

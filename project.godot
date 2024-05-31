@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="HomeAssignmentSection1"
-run/main_scene="res://match_and_learn/main/match_and_learn.tscn"
+run/main_scene="res://mainmenu/mainmenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 GameManager="*res://singleton/game_manager.gd"
 GameManagerMatch="*res://match_and_learn/game_manager.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [input]
 

@@ -30,6 +30,23 @@ var object_pool = [
 #touch event
 var isDragging = false
 
+var item = object_pool[randi() % object_pool.size()]
+var item2 = object_pool[randi() % object_pool.size()]
+var item3 = object_pool[randi() % object_pool.size()]
+var item4 = object_pool[randi() % object_pool.size()]
+
+var correctPlacements = []
+var matchandlearn = load("res://match_and_learn/main/match_and_learn.tscn").instantiate()
+
+
+
+#progress bar
+var progress = 0
+var progress_max = item.size()
+var progress_max2 = item2.size()
+var progress_max3 = item3.size()
+var progress_max4 = item4.size()
+
 func pick_random_texture() -> Texture:
 	var random_index = randi() % food_textures.size()
 	return food_textures[random_index]

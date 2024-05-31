@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://j4spm1o45fxc"]
+
+[ext_resource type="Script" path="res://match_and_learn/level_complete/level_complete.gd" id="1_4iawj"]
+[ext_resource type="Texture2D" uid="uid://btcd025osuw0m" path="res://images/matchBG1.jpg" id="1_45i8e"]
+
+[node name="LevelComplete" type="Node2D"]
+script = ExtResource("1_4iawj")
+
+[node name="BG" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(577, 324)
+scale = Vector2(0.831428, 0.702355)
+texture = ExtResource("1_45i8e")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 247.0
+offset_top = 138.0
+offset_right = 912.0
+offset_bottom = 306.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+text = "CONGRATULATIONS! 
+YOU WON"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 400.0
+offset_top = 355.0
+offset_right = 745.0
+offset_bottom = 466.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Return to menu"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -55,3 +55,6 @@ offset_bottom = -265.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Find the Word"
+
+[connection signal="pressed" from="Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
