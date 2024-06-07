@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://coctrkmyiwx7m"]
+
+[ext_resource type="Script" path="res://3_pics_1_word/dropable_platform/platform.gd" id="1_oyue1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2es3"]
+size = Vector2(50, 50)
+
+[node name="Platform" type="StaticBody2D" groups=["dropable1"]]
+script = ExtResource("1_oyue1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h2es3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -13.0
+offset_right = 20.0
+offset_bottom = 13.0
+horizontal_alignment = 1
+vertical_alignment = 1

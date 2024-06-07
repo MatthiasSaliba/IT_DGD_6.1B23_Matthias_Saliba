@@ -1,3 +1,37 @@
-[gd_scene format=3 uid="uid://cv3ya4o7uae8r"]
+[gd_scene load_steps=6 format=3 uid="uid://cv3ya4o7uae8r"]
 
-[node name="3Pics1Word" type="Node2D"]
+[ext_resource type="Script" path="res://3_pics_1_word/3pics1word/3pics1word.gd" id="1_swqyl"]
+[ext_resource type="Texture2D" uid="uid://7tmigoewivif" path="res://images/back-button.png" id="2_0an23"]
+[ext_resource type="Texture2D" uid="uid://btcd025osuw0m" path="res://images/matchBG1.jpg" id="2_vc6tc"]
+[ext_resource type="Texture2D" uid="uid://brjo3mjxa1qcs" path="res://images/red.png" id="3_vaa5u"]
+[ext_resource type="Texture2D" uid="uid://dvyf14nmsjddy" path="res://images/green.png" id="4_4ox0o"]
+
+[node name="3Pics1Word" type="Node2D" groups=["3Pics1Word"]]
+script = ExtResource("1_swqyl")
+
+[node name="BG" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(577, 324)
+scale = Vector2(0.831428, 0.702355)
+texture = ExtResource("2_vc6tc")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 9.0
+offset_top = 12.0
+offset_right = 118.0
+offset_bottom = 76.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Button"]
+position = Vector2(53, 31)
+scale = Vector2(0.715, 0.449)
+texture = ExtResource("2_0an23")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 445.0
+offset_top = 42.0
+offset_right = 710.0
+offset_bottom = 89.0
+texture_under = ExtResource("3_vaa5u")
+texture_progress = ExtResource("4_4ox0o")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -20,6 +20,7 @@ offset_left = 22.0
 offset_top = 16.0
 offset_right = 129.0
 offset_bottom = 80.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Button"]
 position = Vector2(55.25, 32.25)
@@ -33,5 +34,6 @@ offset_right = 713.0
 offset_bottom = 106.0
 texture_under = ExtResource("4_8pd1o")
 texture_progress = ExtResource("5_7tstu")
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

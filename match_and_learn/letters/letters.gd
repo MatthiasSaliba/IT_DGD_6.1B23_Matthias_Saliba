@@ -1,4 +1,3 @@
-class_name Letters
 extends Node2D
 
 var draggable = false
@@ -59,24 +58,29 @@ func _on_area_2d_mouse_exited():
 func _on_area_2d_body_entered(body):
 	if body.is_in_group('dropable'):
 		is_inside_dropable = true
-		body.modulate = Color(Color.REBECCA_PURPLE, 0.8)
+		body.modulate = Color(Color.GRAY, 0.8)
 		body_ref = body
 
 func _on_area_2d_body_exited(body):
 	if body.is_in_group('dropable'):
 		is_inside_dropable = false
-		body.modulate = Color(Color.MEDIUM_PURPLE, 0.7)
+		body.modulate = Color(Color.LIGHT_GRAY, 0.7)
 
 # Check Completion
 func checkWordCompletion():
 	var word = GameManagerMatch.item["word"].split("")
+	if len(word) != GameManagerMatch.correctPlacements.size():
+		return false
 	for letter in word:
 		if not GameManagerMatch.correctPlacements.has(letter):
 			return false
 	return true
 
+
 func checkWordCompletion2():
 	var word = GameManagerMatch.item2["word"].split("")
+	if len(word) != GameManagerMatch.correctPlacements.size():
+		return false
 	for letter in word:
 		if not GameManagerMatch.correctPlacements.has(letter):
 			return false
@@ -84,6 +88,8 @@ func checkWordCompletion2():
 
 func checkWordCompletion3():
 	var word = GameManagerMatch.item3["word"].split("")
+	if len(word) != GameManagerMatch.correctPlacements.size():
+		return false
 	for letter in word:
 		if not GameManagerMatch.correctPlacements.has(letter):
 			return false
@@ -91,6 +97,8 @@ func checkWordCompletion3():
 
 func checkWordCompletion4():
 	var word = GameManagerMatch.item4["word"].split("")
+	if len(word) != GameManagerMatch.correctPlacements.size():
+		return false
 	for letter in word:
 		if not GameManagerMatch.correctPlacements.has(letter):
 			return false

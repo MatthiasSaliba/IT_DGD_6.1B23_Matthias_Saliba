@@ -11,9 +11,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if GameManagerMatch.isDragging:
+	if GameManagerWord.isDragging:
 		visible = true
-		label.visible = true
+		label.visible = false
 	else:
-		visible = false
+		visible = true
 		label.visible = false
