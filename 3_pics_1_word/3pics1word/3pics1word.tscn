@@ -20,6 +20,7 @@ offset_left = 9.0
 offset_top = 12.0
 offset_right = 118.0
 offset_bottom = 76.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Button"]
 position = Vector2(53, 31)
@@ -34,4 +35,12 @@ offset_bottom = 89.0
 texture_under = ExtResource("3_vaa5u")
 texture_progress = ExtResource("4_4ox0o")
 
+[node name="Hint" type="Button" parent="."]
+offset_left = 8.0
+offset_top = 88.0
+offset_right = 143.0
+offset_bottom = 181.0
+text = "Hint"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Hint" to="." method="_on_button_2_pressed"]

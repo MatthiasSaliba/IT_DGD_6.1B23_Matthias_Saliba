@@ -12,7 +12,7 @@ var object_pool = [
 #touch event
 var isDragging = false
 
-var item =  object_pool[5] #object_pool[randi() % object_pool.size()]
+var item =  object_pool[randi() % object_pool.size()]
 var item2 = object_pool[randi() % object_pool.size()]
 var item3 = object_pool[randi() % object_pool.size()]
 

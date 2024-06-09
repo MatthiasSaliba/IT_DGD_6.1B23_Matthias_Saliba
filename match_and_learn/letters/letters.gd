@@ -40,8 +40,8 @@ func _process(delta):
 						GameManagerMatch.correctPlacements.clear()
 						progressBar.value = 0
 						
-				else:
-					tween.tween_property(self, "position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
+				#else:
+					#tween.tween_property(self, "position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
 			else:
 				tween.tween_property(self, "position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
 

@@ -6,6 +6,7 @@ var letterLabel = load("res://3_pics_1_word/letters/letters.tscn")
 @onready var background = $BG
 @onready var button = $Button
 @onready var progressBar = $ProgressBar
+@onready var hint = $Hint
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,6 +34,7 @@ func _on_button_pressed():
 	for child in get_children():
 		child.queue_free()
 	get_tree().change_scene_to_file("res://mainmenu/mainmenu.tscn")
+	GameManagerWord.correctPlacements.clear()
 	
 var currentRound = 1
 const MAX_ROUNDS = 3
@@ -41,7 +43,7 @@ func start_new_round():
 	print(currentRound)
 
 	background.z_index = 0
-	
+
 	for child in get_children():
 		if child != background and child != button and child != progressBar:
 			child.queue_free()
@@ -130,3 +132,9 @@ func shuffleWord(word):
 		letters[j] = temp
 
 	return letters
+
+# i need to get an instance of the label from the platform scene
+
+func _on_button_2_pressed():
+	#platformLabel.visible = true
+	print("button pressed")

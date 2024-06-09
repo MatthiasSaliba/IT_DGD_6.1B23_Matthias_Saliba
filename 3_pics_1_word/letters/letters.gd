@@ -27,19 +27,23 @@ func _process(delta):
 			if is_inside_dropable:
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 				var reference = body_ref.get_node("Label").text
+				
 				if label.text == reference:
 					GameManagerWord.correctPlacements.append(reference)
-					modulate = Color(Color.GREEN, 1)
+					
 					print(GameManagerWord.correctPlacements)
 					#increment progressbar
 					get_tree().call_group("3Pics1Word", "_on_increment_progressbar")
 					print(progressBar.value)
-					
+
 					if checkWordCompletion() || checkWordCompletion2() || checkWordCompletion3():
-						get_tree().call_group("3Pics1Word", "_on_correct_match")
 						# clear the correct placements
 						GameManagerWord.correctPlacements.clear()
 						progressBar.value = 0
+						modulate = Color(Color.GREEN, 1)
+						print("correct word")
+						await get_tree().create_timer(2).timeout
+						get_tree().call_group("3Pics1Word", "_on_correct_match")
 						
 				else:
 					tween.tween_property(self, "position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
