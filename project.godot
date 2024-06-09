@@ -17,7 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://singleton/game_manager.gd"
 GameManagerMatch="*res://match_and_learn/game_manager.gd"
 GameManagerWord="*res://3_pics_1_word/GameManagerWord.gd"
 

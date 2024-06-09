@@ -1,19 +1,19 @@
 [gd_scene load_steps=6 format=3 uid="uid://cv3ya4o7uae8r"]
 
-[ext_resource type="Script" path="res://3_pics_1_word/3pics1word/3pics1word.gd" id="1_swqyl"]
-[ext_resource type="Texture2D" uid="uid://7tmigoewivif" path="res://images/back-button.png" id="2_0an23"]
-[ext_resource type="Texture2D" uid="uid://btcd025osuw0m" path="res://images/matchBG1.jpg" id="2_vc6tc"]
-[ext_resource type="Texture2D" uid="uid://brjo3mjxa1qcs" path="res://images/red.png" id="3_vaa5u"]
-[ext_resource type="Texture2D" uid="uid://dvyf14nmsjddy" path="res://images/green.png" id="4_4ox0o"]
+[ext_resource type="Script" path="res://3_pics_1_word/3pics1word/3pics1word.gd" id="1_kjnjc"]
+[ext_resource type="Texture2D" uid="uid://btcd025osuw0m" path="res://images/matchBG1.jpg" id="2_v1844"]
+[ext_resource type="Texture2D" uid="uid://7tmigoewivif" path="res://images/back-button.png" id="3_ehyqm"]
+[ext_resource type="Texture2D" uid="uid://brjo3mjxa1qcs" path="res://images/red.png" id="4_g18j2"]
+[ext_resource type="Texture2D" uid="uid://dvyf14nmsjddy" path="res://images/green.png" id="5_n2sa8"]
 
 [node name="3Pics1Word" type="Node2D" groups=["3Pics1Word"]]
-script = ExtResource("1_swqyl")
+script = ExtResource("1_kjnjc")
 
 [node name="BG" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(577, 324)
 scale = Vector2(0.831428, 0.702355)
-texture = ExtResource("2_vc6tc")
+texture = ExtResource("2_v1844")
 
 [node name="Button" type="Button" parent="."]
 offset_left = 9.0
@@ -25,15 +25,15 @@ metadata/_edit_use_anchors_ = true
 [node name="Sprite2D" type="Sprite2D" parent="Button"]
 position = Vector2(53, 31)
 scale = Vector2(0.715, 0.449)
-texture = ExtResource("2_0an23")
+texture = ExtResource("3_ehyqm")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="."]
 offset_left = 445.0
 offset_top = 42.0
 offset_right = 710.0
 offset_bottom = 89.0
-texture_under = ExtResource("3_vaa5u")
-texture_progress = ExtResource("4_4ox0o")
+texture_under = ExtResource("4_g18j2")
+texture_progress = ExtResource("5_n2sa8")
 
 [node name="Hint" type="Button" parent="."]
 offset_left = 8.0

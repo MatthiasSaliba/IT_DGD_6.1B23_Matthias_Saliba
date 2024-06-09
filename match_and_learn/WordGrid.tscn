@@ -1,0 +1,98 @@
+[gd_scene load_steps=2 format=3 uid="uid://co1u02ssb21u1"]
+
+[sub_resource type="GDScript" id="GDScript_yn8f0"]
+script/source = "extends Node2D
+
+const GRID_SIZE = 6
+var target_word = \"EXAMPLE\"
+var grid_letters = []
+
+func _ready():
+	generate_grid()
+	place_word(target_word)
+
+func generate_grid():
+	var alphabet = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"
+	var random = RandomNumberGenerator.new()
+	random.randomize()
+
+	grid_letters.clear()
+	for i in range(GRID_SIZE * GRID_SIZE):
+		var letter = alphabet[random.randi_range(0, 25)]
+		grid_letters.append(letter)
+		$GridContainer.get_child(i).text = letter
+
+func place_word(word):
+	# Simple placement logic; can be improved for better randomness
+	var start_pos = Vector2(randf_range(0, GRID_SIZE-1), randf_range(0, GRID_SIZE-1))
+	for i in range(word.length()):
+		var pos = start_pos + Vector2(i, 0)  # Horizontal placement
+		if pos.x < GRID_SIZE:
+			grid_letters[pos.y * GRID_SIZE + pos.x] = word[i]
+			$GridContainer.get_child(pos.y * GRID_SIZE + pos.x).text = word[i]
+
+@onready var audio_player = $AudioStreamPlayer
+
+func play_word_audio():
+	#TODO
+	audio_player.stream = load(\"res://audio/\" + target_word + \".ogg\")
+	audio_player.play()
+
+func _on_PlayButton_pressed():
+	play_word_audio()
+
+var start_pos = null
+var end_pos = null
+
+func _input(event):
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			start_pos = event.position
+		else:
+			end_pos = event.position
+			check_word_selection()
+
+func check_word_selection():
+	var start_index = get_grid_index(start_pos)
+	var end_index = get_grid_index(end_pos)
+	var selected_word = get_selected_word(start_index, end_index)
+	if selected_word == target_word or selected_word.reverse() == target_word:
+		print(\"Correct!\")
+	else:
+		print(\"Try again!\")
+
+func get_grid_index(position):
+	# Convert screen position to grid index
+	var grid_x = int(position.x / $GridContainer.size.x * GRID_SIZE)
+	var grid_y = int(position.y / $GridContainer.size.y * GRID_SIZE)
+	return grid_y * GRID_SIZE + grid_x
+
+func get_selected_word(start_index, end_index):
+	# Get selected word based on start and end indices
+	var selected_word = \"\"
+	if start_index < end_index:
+		for i in range(start_index, end_index + 1):
+			selected_word += grid_letters[i]
+	else:
+		for i in range(start_index, end_index - 1, -1):
+			selected_word += grid_letters[i]
+	return selected_word
+"
+
+[node name="WordGrid" type="Node2D"]
+script = SubResource("GDScript_yn8f0")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="GridContainer"]
+layout_mode = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1014.0
+offset_top = 18.0
+offset_right = 1132.0
+offset_bottom = 129.0

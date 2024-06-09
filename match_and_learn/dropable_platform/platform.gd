@@ -6,14 +6,3 @@ extends StaticBody2D
 func _ready():
 	modulate = Color(Color.GRAY, 0.7)
 	label.add_theme_color_override("font_color", Color("Black"))
-	
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if GameManagerMatch.isDragging:
-		visible = true
-		label.visible = true
-	else:
-		visible = false
-		label.visible = false

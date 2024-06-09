@@ -6,7 +6,6 @@ var letterLabel = load("res://3_pics_1_word/letters/letters.tscn")
 @onready var background = $BG
 @onready var button = $Button
 @onready var progressBar = $ProgressBar
-@onready var hint = $Hint
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,11 +15,11 @@ func _ready():
 #increment progressbar according round
 func _on_increment_progressbar():
 	if currentRound == 1:
-		progressBar.value += (100/GameManagerWord.item["word"].length())
+		progressBar.value += 100/MAX_ROUNDS
 	elif currentRound == 2:
-		progressBar.value += (100/GameManagerWord.item2["word"].length())
+		progressBar.value += 100/MAX_ROUNDS*2
 	elif currentRound == 3:
-		progressBar.value += (100/GameManagerWord.item3["word"].length())
+		progressBar.value += 100/MAX_ROUNDS*3
 
 func _on_correct_match():
 	incrementRound()
@@ -43,6 +42,12 @@ func start_new_round():
 	print(currentRound)
 
 	background.z_index = 0
+
+	#create new hint button
+	var hintButton = Button.new()
+	hintButton.text = "Hint"
+	hintButton.size = Vector2(100, 50)
+	hintButton.position = Vector2(1000, 50)
 
 	for child in get_children():
 		if child != background and child != button and child != progressBar:
@@ -132,9 +137,3 @@ func shuffleWord(word):
 		letters[j] = temp
 
 	return letters
-
-# i need to get an instance of the label from the platform scene
-
-func _on_button_2_pressed():
-	#platformLabel.visible = true
-	print("button pressed")

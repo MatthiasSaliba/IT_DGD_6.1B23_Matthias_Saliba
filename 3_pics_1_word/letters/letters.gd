@@ -33,7 +33,7 @@ func _process(delta):
 					
 					print(GameManagerWord.correctPlacements)
 					#increment progressbar
-					get_tree().call_group("3Pics1Word", "_on_increment_progressbar")
+					#get_tree().call_group("3Pics1Word", "_on_increment_progressbar")
 					print(progressBar.value)
 
 					if checkWordCompletion() || checkWordCompletion2() || checkWordCompletion3():
@@ -42,8 +42,11 @@ func _process(delta):
 						progressBar.value = 0
 						modulate = Color(Color.GREEN, 1)
 						print("correct word")
+						get_tree().call_group("3Pics1Word", "_on_increment_progressbar")
 						await get_tree().create_timer(2).timeout
+						
 						get_tree().call_group("3Pics1Word", "_on_correct_match")
+						
 						
 				else:
 					tween.tween_property(self, "position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
